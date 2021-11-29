@@ -1,0 +1,43 @@
+version: '3.8'
+services:
+    php-apache-environment:
+        container_name: php-apache
+        image: 1931710110/UTS-Sister
+        build:
+            context: ./php
+            dockerfile: Dockerfile
+        depends_on:
+            - db
+        volumes:
+            - ./php/src:/var/www/html/
+        ports:
+            - 8000:80
+        networks:
+            - backend
+    db:
+        container_name: db
+        image: mysql
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: Morfeen13
+            MYSQL_DATABASE: dbutssister
+            # MYSQL_USER: MYSQL_USER
+            # MYSQL_PASSWORD: MYSQL_PASSWORD
+        ports:
+            - "3306:3306"
+        volumes:
+            - db:/var/lib/mysql
+            - ./dbutssiter.sql:/docker-entrypoint-initdb.d/dbutssiter.sql
+        networks:
+            - backend
+
+    volumes:
+      db:
+    
+    networks:
+      backend:
+        name: backend-network
+        ipam:
+          driver: default
+          config:
+            - subnet: 10.0.0.0/24
