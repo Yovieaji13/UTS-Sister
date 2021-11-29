@@ -1,11 +1,11 @@
 version: '3.8'
 services:
     php-apache-environment:
+        image: yovie/quiz2
         container_name: php-apache
-        image: 1931710110/uts-sister
-        build:
-            context: ./php
-            dockerfile: Dockerfile
+        # build:
+        #     context: ./php
+        #     dockerfile: Dockerfile
         depends_on:
             - db
         volumes:
@@ -14,6 +14,7 @@ services:
             - 8000:80
         networks:
             - backend
+
     db:
         container_name: db
         image: mysql
@@ -40,4 +41,4 @@ services:
         ipam:
           driver: default
           config:
-            - subnet: 10.0.0.0/24
+            - subnet: 172.10.0.0/24
