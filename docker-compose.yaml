@@ -2,7 +2,7 @@ version: '3.8'
 services:
     php-apache-environment:
         container_name: php-apache
-        image: 1931710110/UTS-Sister
+        image: 1931710110/uts-sister
         build:
             context: ./php
             dockerfile: Dockerfile
