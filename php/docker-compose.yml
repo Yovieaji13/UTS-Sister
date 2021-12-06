@@ -9,7 +9,7 @@ services:
         depends_on:
             - db
         volumes:
-            - ./php/src:/var/www/html/
+            - ./UTS-Sister/php/src:/var/www/html/
         ports:
             - 8000:80
         networks:
